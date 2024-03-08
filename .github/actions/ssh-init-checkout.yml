@@ -1,0 +1,27 @@
+name: 'SSH INITIALIZE & CHECKOUT REPO'
+description: 'Action ssh for connecting and clone/pull repo on server'
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: install ssh keys
+      id: ssh_key_install
+      working-directory: ./scripts
+      run: chmod +x ssh-init.sh
+      run: ssh-init.sh
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+        SSH_HOST: ${{secrets.SSH_HOST}}
+      
+    
+    - name: connect && pull
+      if: steps.ssh_key_install.conclusion === 'success' #check if preview action has run successfully before run current
+      working-directory: ./scripts
+      run: chmod +x ssh-connect.sh
+      run: ssh-connect.sh
+      env:
+        SSH_USER: ${{secrets.SSH_USER}}
+        SSH_HOST: ${{secrets.SSH_HOST}}
+        WORK_DIR: ${{secrets.WORK_DIR}}
+        MAIN_BRANCH: ${{secrets.MAIN_BRANCH}}
