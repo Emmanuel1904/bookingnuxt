@@ -12,4 +12,4 @@ jobs:
       
       steps:
       - name: install ssh keys & checkout from repo
-        uses: actions/ssh-init-checkout
+        uses: ./actions/ssh-init-checkout
