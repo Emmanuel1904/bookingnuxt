@@ -15,4 +15,8 @@ jobs:
       - name: install ssh keys & checkout from repo
         uses: ./.github/actions/ssh-init-checkout
         with: 
-          ssh_user: ${{secrets.SSH_USER}}
+          ssh_user: ${{ secrets.SSH_USER }}
+          ssh_host: ${{ secrets.SSH_HOST }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          work_dir: ${{ secrets.WORK_DIR }}
+          main_branch: ${{ secrets.MAIN_BRANCH }}

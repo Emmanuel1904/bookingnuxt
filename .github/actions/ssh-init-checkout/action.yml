@@ -5,28 +5,42 @@ inputs:
   ssh_user:
     required: true
     description: 'connect ssh user'
+  ssh_host:
+    required: true
+    description: 'ssh host'
+  ssh_private_key:
+    required: true
+    description: 'ssh private key'
+  work_dir:
+    required: true
+    description: 'remote workdir'
+  main_branch:
+    required: true
+    description: 'main branch'
 
 runs:
   using: "composite"
   steps:
     - name: install ssh keys
-      id: ssh_key_install
+      shell: bash
       working-directory: ./scripts
       run: chmod +x ssh-init.sh
-    - run: ssh-init.sh
+    - id: ssh_key_install 
+      run: ssh-init.sh
       shell: bash
       env:
-        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-        SSH_HOST: ${{secrets.SSH_HOST}}
+        SSH_PRIVATE_KEY: ${{ inputs.SSH_PRIVATE_KEY }}
+        SSH_HOST: ${{ inputs.ssh_host }}
       
     - name: connect && pull
-      if: steps.ssh_key_install.conclusion === 'success' #check if preview action has run successfully before run current
+      shell: bash
+      if: steps.ssh_key_install.conclusion == 'success' #check if preview action has run successfully before run current
       working-directory: ./scripts
       run: chmod +x ssh-connect.sh
     - run: ssh-connect.sh
       shell: bash
       env:
         SSH_USER: ${{ inputs.ssh_user }}
-        SSH_HOST: ${{ secrets.SSH_HOST }}
-        WORK_DIR: ${{ secrets.WORK_DIR }}
-        MAIN_BRANCH: ${{ secrets.MAIN_BRANCH }}
+        SSH_HOST: ${{ inputs.ssh_host }}
+        WORK_DIR: ${{ inputs.work_dir }}
+        MAIN_BRANCH: ${{ inputs.main_branch }}
