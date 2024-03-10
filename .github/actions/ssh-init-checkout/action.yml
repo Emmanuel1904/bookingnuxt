@@ -25,7 +25,8 @@ runs:
       shell: bash
       working-directory: ./.github/scripts
       run: chmod +x ssh-init.sh
-    - id: ssh_key_install 
+    - id: ssh_key_install
+      working-directory: ./.github/scripts
       run: ssh-init.sh
       shell: bash
       env:
@@ -38,6 +39,7 @@ runs:
       working-directory: ./.github/scripts
       run: chmod +x ssh-connect.sh
     - run: ssh-connect.sh
+      working-directory: ./.github/scripts
       shell: bash
       env:
         SSH_USER: ${{ inputs.ssh_user }}
