@@ -23,19 +23,19 @@ runs:
   steps:
     - name: install ssh keys
       shell: bash
-      working-directory: ./scripts
+      working-directory: ./.github/scripts
       run: chmod +x ssh-init.sh
     - id: ssh_key_install 
       run: ssh-init.sh
       shell: bash
       env:
-        SSH_PRIVATE_KEY: ${{ inputs.SSH_PRIVATE_KEY }}
+        SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
         SSH_HOST: ${{ inputs.ssh_host }}
       
     - name: connect && pull
       shell: bash
       if: steps.ssh_key_install.conclusion == 'success' #check if preview action has run successfully before run current
-      working-directory: ./scripts
+      working-directory: ./.github/scripts
       run: chmod +x ssh-connect.sh
     - run: ssh-connect.sh
       shell: bash
