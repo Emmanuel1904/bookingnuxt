@@ -27,7 +27,7 @@ runs:
       run: chmod +x ssh-init.sh
     - id: ssh_key_install
       working-directory: ./.github/scripts
-      run: ssh-init.sh
+      run: sh ssh-init.sh
       shell: bash
       env:
         SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
@@ -38,7 +38,7 @@ runs:
       if: steps.ssh_key_install.conclusion == 'success' #check if preview action has run successfully before run current
       working-directory: ./.github/scripts
       run: chmod +x ssh-connect.sh
-    - run: ssh-connect.sh
+    - run: sh ssh-connect.sh
       working-directory: ./.github/scripts
       shell: bash
       env:
