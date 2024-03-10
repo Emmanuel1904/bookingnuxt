@@ -8,6 +8,9 @@ inputs:
   ssh_host:
     required: true
     description: 'ssh host'
+  ssh_private_key:
+    required: true
+    description: 'ssh private key'
   work_dir:
     required: true
     description: 'remote workdir'
