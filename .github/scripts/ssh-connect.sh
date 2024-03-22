@@ -1,6 +1,6 @@
 #!/bin/bash
 
-repro_git= https://github.com/Emmanuel1904/bookingnuxt.git
+repro_git=https://github.com/Emmanuel1904/bookingnuxt.git
 
 # Vérifie si les variables d'environnement nécessaires sont définies
 if [ -z "$SSH_USER" ] || [ -z "$SSH_HOST" ] || [ -z "$WORK_DIR" ] || [ -z "$MAIN_BRANCH" ]; then
