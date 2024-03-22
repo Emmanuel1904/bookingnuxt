@@ -16,10 +16,6 @@ else
     git remote add origin $repro_git &&
     git clone $repro_git .
 fi &&
-docker run -dp 3007:3000 \
-    -w \"/$WORK_DIR\" --net=nginx_network --name dockerbookingcont_ --mount type=bind,src=\"./\",target=/$WORK_DIR \
-    node:18-alpine \
-    sh -c \"npm install && npm run dev\" &&
 exit"
 
 rm -rf ~/.ssh
