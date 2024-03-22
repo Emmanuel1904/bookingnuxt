@@ -3,7 +3,7 @@ name: Custom CD
 on:
     push:
       branches:
-        - main
+        - develop
 
 jobs:
     run_pull:
