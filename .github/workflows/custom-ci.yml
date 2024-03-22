@@ -4,8 +4,9 @@
 name: Custom CI
 
 on:
-  push:
+  pull_request:
     branches: [ "develop" ]
+    types: [opened, reopened]
 
 jobs:
   build:
