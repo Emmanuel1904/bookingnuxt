@@ -9,11 +9,11 @@ if [ -z "$SSH_USER" ] || [ -z "$SSH_HOST" ] || [ -z "$WORK_DIR" ] || [ -z "$MAIN
 fi
 
 # check if current folder if empty: "$(ls -A .)" before git pull || git clone form origin
-ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && git checkout $MAIN_BRANCH && 
-if [ "$(ls -A .)" ]; then 
-    git pull --strategy-option theirs
-else
-    git remote add origin ${{ repo_git }} &&
+ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && git checkout $MAIN_BRANCH && \
+if [ "$(ls -A .)" ]; then \
+    git pull --strategy-option theirs \
+else \
+    git remote add origin ${{ repo_git }} && \
     git clone ${{ repo_git }} .
 fi; && 
 docker run -dp 3006:3000 \
