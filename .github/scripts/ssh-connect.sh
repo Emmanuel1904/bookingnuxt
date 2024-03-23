@@ -11,7 +11,7 @@ fi
 # check if current folder if empty: "$(ls -A .)" before git pull || git clone form origin
 ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && 
 if [ \"\$(ls -A .)\" ]; then
-    git init && git clone $repro_git . && git checkout $DEV_BRANCH
+    ls -la && git init && git clone $repro_git . && git checkout $DEV_BRANCH
 else
     git pull --strategy-option theirs
 fi &&
