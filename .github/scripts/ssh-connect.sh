@@ -1,7 +1,7 @@
 #!/bin/bash
 
 repro_git="https://github.com/Emmanuel1904/bookingnuxt.git"
-wk_dir="./bookingprods"
+wk_dir="/bookingprod"
 
 # Vérifie si les variables d'environnement nécessaires sont définies
 if [ -z "$SSH_USER" ] || [ -z "$SSH_HOST" ] || [ -z "$wk_dir" ] || [ -z "$MAIN_BRANCH" ]; then
@@ -10,7 +10,7 @@ if [ -z "$SSH_USER" ] || [ -z "$SSH_HOST" ] || [ -z "$wk_dir" ] || [ -z "$MAIN_B
 fi
 
 # check if current folder if empty: "$(ls -A .)" before git pull || git clone form origin
-ssh $SSH_USER@$SSH_HOST "cd $wk_dir && git checkout $MAIN_BRANCH && 
+ssh $SSH_USER@$SSH_HOST "cd bookingprod && git checkout $MAIN_BRANCH && 
 if [ \"\$(ls -A .)\" ]; then 
     git pull --strategy-option theirs
 else
