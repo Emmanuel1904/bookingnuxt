@@ -13,7 +13,7 @@ ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && git checkout $MAIN_BRANCH &&
 if [ \"\$(ls -A .)\" ]; then
     git checkout develop && git pull --strategy-option theirs
 else
-    ls -la && git init && git clone $repro_git .
+    ls -la
 fi &&
 docker run -dp 3007:3000 \
     -w \"/$WORK_DIR\" --net=nginx_network --name dockerbookingcont_ --mount type=bind,src=\"./\",target=/$WORK_DIR \
