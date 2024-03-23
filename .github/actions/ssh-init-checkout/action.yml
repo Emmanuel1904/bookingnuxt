@@ -14,6 +14,9 @@ inputs:
   work_dir:
     required: true
     description: 'remote workdir'
+  dev_branch:
+    required: true
+    description: 'dev branch'
   main_branch:
     required: true
     description: 'main branch'
@@ -46,3 +49,4 @@ runs:
         SSH_HOST: ${{ inputs.ssh_host }}
         WORK_DIR: ${{ inputs.work_dir }}
         MAIN_BRANCH: ${{ inputs.main_branch }}
+        DEV_BRANCH: ${{ inputs.dev_branch }}
