@@ -16,7 +16,7 @@ else
     git clone $repro_git . && git checkout $DEV_BRANCH
 fi &&
 docker run -dp 3007:3000 \
-    -w \"/bookingprod\" --net=nginx_network --name dockerbookingprod --mount type=bind,src=$(pwd),target=/bookingprod \
+    -w \"/bookingprod\" --net=nginx_network --name dockerbookingprod --mount type=bind,src=/root/workspace/bookingprod,target=/bookingprod \
     node:18-alpine \
     sh -c \"cd /bookingprod cp -r . . && npm install && npm run dev\" &&
 exit"
