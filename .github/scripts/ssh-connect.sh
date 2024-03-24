@@ -11,9 +11,9 @@ fi
 # check if current folder if empty: "$(ls -A .)" before git pull || git clone form origin
 ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && 
 if [ \"\$(ls -A .)\" ]; then
-    git checkout $DEV_BRANCH && git pull --strategy-option theirs
+    git checkout $MAIN_BRANCH && git pull --strategy-option theirs
 else
-    git clone $repro_git . && git checkout $DEV_BRANCH
+    git clone $repro_git . && git checkout $MAIN_BRANCH
 fi &&
 docker rm -fv dockerbookingprod &&
 docker run -dp 3007:3000 \
