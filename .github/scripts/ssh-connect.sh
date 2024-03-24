@@ -15,6 +15,7 @@ if [ \"\$(ls -A .)\" ]; then
 else
     git clone $repro_git . && git checkout $DEV_BRANCH
 fi &&
+docker rm -fv dockerbookingprod &&
 docker run -dp 3007:3000 \
     -w \"/bookingprod\" --net=nginx_network --name dockerbookingprod --mount type=bind,src=/root/workspace/bookingprod,target=/bookingprod \
     node:18-alpine \
@@ -22,4 +23,3 @@ docker run -dp 3007:3000 \
 exit"
 
 rm -rf ~/.ssh
-# docker compose up -d --remove-orphans
