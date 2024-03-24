@@ -20,3 +20,4 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           work_dir: ${{ secrets.WORK_DIR }}
           main_branch: ${{ secrets.MAIN_BRANCH }}
+          dev_branch: ${{ secrets.DEV_BRANCH }}
