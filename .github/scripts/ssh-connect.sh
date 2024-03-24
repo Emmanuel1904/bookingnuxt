@@ -11,12 +11,12 @@ fi
 # check if current folder if empty: "$(ls -A .)" before git pull || git clone form origin
 ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && 
 if [ \"\$(ls -A .)\" ]; then
-    git pull --strategy-option theirs
+    git checkout $DEV_BRANCH && git pull --strategy-option theirs
 else
     git clone $repro_git . && git checkout $DEV_BRANCH
 fi &&
 docker run -dp 3007:3000 \
-    -w \"/$WORK_DIR\" --net=nginx_network --name dockerbookingcont_ --mount type=bind,src=\".\",target=/$WORK_DIR \
+    -w \"/$WORK_DIR\" --net=nginx_network --name dockerbookingcont_ --mount type=bind,src=.,target=/$WORK_DIR \
     node:18-alpine \
     sh -c \"npm install && npm run dev\" &&
 exit"
