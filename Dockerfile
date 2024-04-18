@@ -4,5 +4,5 @@ RUN mkdir -p /dockerbooking
 WORKDIR /dockerbooking
 COPY . .
 RUN npm install
-EXPOSE 3006
+EXPOSE 3003
 CMD [ "npm", "run", "dev" ]
