@@ -1,0 +1,14 @@
+name: RELEASE
+
+on:
+  release:
+    types: [published]
+
+  jobs:
+    generate_changelog:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v4
+        name: checkout project
+      - name: 

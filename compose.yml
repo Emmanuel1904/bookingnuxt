@@ -5,8 +5,10 @@ services:
     container_name: dockerbookingcontainer
     build: .
     restart: always
+    profiles:
+      - booking_front
     ports:
-      - 3006:3000
+      - 3003:3000
     volumes: 
           - type: bind
             source: .
